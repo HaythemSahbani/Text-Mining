@@ -1,0 +1,69 @@
+\begin{thebibliography}{11}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[web(2015{\natexlab{a}})]{website:data_set}
+The twitter political corpus, February 2015{\natexlab{a}}.
+\newblock URL \url{http://www.usna.edu/Users/cs/nchamber/data/twitter/}.
+
+\bibitem[Wikipedia(2015{\natexlab{a}})]{website:Stop_words}
+Wikipedia.
+\newblock Stop words, January 2015{\natexlab{a}}.
+\newblock URL \url{http://en.wikipedia.org/wiki/Stop_words}.
+
+\bibitem[Wikipedia(2015{\natexlab{b}})]{website:tfidf}
+Wikipedia.
+\newblock tf–idf, February 2015{\natexlab{b}}.
+\newblock URL \url{http://en.wikipedia.org/wiki/Tf%E2%80%93idf}.
+
+\bibitem[web(2015{\natexlab{b}})]{website:Naive_Bayes_classifier}
+Naive bayes classifier, February 2015{\natexlab{b}}.
+\newblock URL
+  \url{http://www.ic.unicamp.br/~rocha/teaching/2011s2/mc906/aulas/naive-bayes-classifier.pdf}.
+
+\bibitem[Bird et~al.()Bird, Klein, and Loper]{Xbook}
+Steven Bird, Erwan Klein, and Edward Loper.
+\newblock \emph{{N}atural {L}anguage {P}rocessing with {P}ython}.
+\newblock O'REILLY.
+
+\bibitem[Nigam et~al.()Nigam, Laffety, and
+  McCallum]{Maximum_Entropy_for_text_Classification}
+Kamal Nigam, John Laffety, and Andrew McCallum.
+\newblock Using maximum entropy for text classification.
+\newblock Technical report, School of computer Science Carnegie Mellon
+  University Pittsburgh.
+
+\bibitem[Chieu and Ng()]{Maximum_Entropy_for_text_Classification(2)}
+Hai~Leong Chieu and Hwee~Tou Ng.
+\newblock Named entity recognition: A maximum entropy approach using global
+  information.
+\newblock Technical report, DSO National Laboratories. Department of Computer
+  Science School of Computing National University of Singapore.
+
+\bibitem[Java et~al.()Java, Song, Finin, and Tseng]{Why_We_Twitter}
+Akshay Java, Xiaodan Song, Tim Finin, and Belle Tseng.
+\newblock Why we twitter: Understanding microblogging usage and communities.
+\newblock Technical report, University of Maryland Baltimore County, NEC
+  Laboratories America.
+
+\bibitem[Liu et~al.()Liu, Yu, Chen, Wang, and Wu]{Short_Text_Feature_Selection}
+Zitao Liu, Wenchao Yu, Wei Chen, Shuran Wang, and Fengyi Wu.
+\newblock Short text feature selection for micro-blog mining.
+\newblock Technical report, International School of Software Wuhan University
+  Wuhan, China. School of Electronics and Information Engineering Sichuan
+  University Chengdu, China.
+
+\bibitem[Ahkter and Soria()]{Sentiment_Analysis}
+Julie~Kane Ahkter and Steven Soria.
+\newblock Sentiment analysis: Facebook status messages.
+\newblock Technical report.
+
+\bibitem[Go et~al.()Go, Bhayani, and Huang]{Sentiment_Analysis(2)}
+Alec Go, Richa Bhayani, and Lei Huang.
+\newblock Twitter sentiment classification using distant supervision.
+\newblock Technical report, Stanford University.
+
+\end{thebibliography}

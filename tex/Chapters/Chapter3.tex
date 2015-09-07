@@ -1,0 +1,121 @@
+% Chapter Template
+
+\chapter{Data set Processing} % Main chapter title
+
+\label{Chapter3} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+\lhead{\emph{Data set Processing}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
+
+
+Raw data is generally not well fitted for the needs of a project.  
+This can be driven by the lack of attributes values or certain attributes of interest. 
+Also real world data is noisy. It contains errors or outliers.  
+Therefore the data needs to be processed. 
+The next sections will show how the raw text is processed to get the most meaningful features out from it.
+These features will be next used in the classification task. 
+But first, a brief presentation of the data set is mandatory. 
+
+
+
+
+\section{The data set}
+The data set\cite{website:data_set} provides resources to develop learning algorithms that link political statements on Twitter to general opinions about government and politicians. It is composed of two files of tweets that have been hand labeled for their topics, specifically, discussing politics or not discussing politics.
+Each file contains about 2000 tweets, one tweet per line. A line contains two fields separated by a single tab character: the label, and the text of the tweet:\\
+\emph{POLIT     RT @AdamSmithInst Quote of the week: My political opinions lean more and more towards Anarchy }\\
+\emph{NOT     @DeeptiLamba LOL, I like quotes. Feminist, anti-men quotes.}\\
+The first file is a randomly selected set of 2000 tweets from Twitter's "spritzer" feed collected between June 1, 2009 and Dec 31, 2009. The second corpus is not selected from the entire feed, but rather randomly selected from a subset of tweets that contained at least one political keyword in each tweet.
+The two labels are \emph{POLIT} (political) and \emph{NOT} (not political).\\
+The two files are merged in the context of this work. In fact, on one side the \emph{Politics General Tweet Corpus} contains about 90\% of tweets labeled as \emph{non-political}. On the other side the \emph{Politics Keyword Tweet Corpus} contains about 90\% of tweets labeled as \emph{political}. If let so the classifier will have a good accuracy but in reality it won't do any classification task since 90\% of its entries are about one label.
+By combining both corpora, the labels are equally distributed and a classifier can learn from it to predict political and non-political tweets. 
+The two corpora are combined in the \textbf{\_tweets.txt} file.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+
+\section{Processing}
+
+
+This section explains the assumptions and techniques used to process raw tweets.\\
+For further testing and manipulations, the python code is available in the \textbf{preprocess.py} file.
+
+%-----------------------------------
+%	SUBSECTION 1
+%-----------------------------------
+
+
+
+\subsection{Special tweet patterns}
+\label{sec:special_tweet_patterns}
+Since in tweets there are many links, hashtags\footnote{Words that begin with \#}, users\footnote{Words that begin with @} and 'retweet' tokens, they need to be processed in a specific way.
+At first, I made a hypothesis that links and 'retweet' tokens are relevant for political classification.
+This assumption was made on these basis:
+\begin{itemize}
+\item Political tweets are important and thus they are highly 'retweeted'
+\item Political tweets refer to important matters and tweets are limited in 140 characters. 
+That's why they include links to explain the subject in more details. 
+\end{itemize}
+Unfortunately after seeing the distribution of these patterns in political and non-political tweets, it appears that they are equally scattered. As a result links and "retweet" tokens don't add any information Therefore they have been deleted in the process.
+
+In second place, hashtags and users  are unique so meaningful for classification purpose.
+
+%-----------------------------------
+%	SUBSECTION 2
+%-----------------------------------
+
+  
+\subsection{Delete stop words}
+Not all words in a language are representative of a topic or a sentiment analysis. 
+As a consequence they don't add information in the classification task.
+These words are called stop words\cite{website:Stop_words}: 'They are words which are filtered out before or after processing of natural language data (text). There is no single universal list of stop words used by all processing of natural language tools, and indeed not all tools even use such a list'.   
+Therefore a stop word list\footnote{stop\_words.py file} is created to fulfill the purpose of this work.\\
+Generally English words are contracted. For example: \emph{'do not'} is written \emph{'don't'}. 
+To prevent adding more entries to the stop word list, a contraction list\footnote{contractions.py file} that maps contracted words to their standard form has been created to expand these contractions.   
+%-----------------------------------
+%	SUBSECTION 3
+%-----------------------------------
+\subsection{Tokenize tweets }
+
+The tokenization of tweets is processed using the \textit{nltk regexp tokenizer}\footnote{\href{http://www.nltk.org/_modules/nltk/tokenize/regexp.html}{URL: RegexpTokenizer }}.
+This tool tokenizes text using a regular expression pattern.
+The most important patterns that are implemented in the tokenizer are \verb/(\@\w*)+/ and \verb/(\#\w*)+/ as they prevent the tokenizer from deleting the \emph{\#} and \emph{@} symbols since they are important for the classification part.\\
+
+After processing the data, tweets that have 1 or less token are deleted.
+
+
+
+
+%-----------------------------------
+%	SECTION 2
+%-----------------------------------
+\section{Feature extraction}
+The final step for processing the data is feature extraction. 
+This part is influenced by the machine learning algorithms that will be used to classify the tweets in the next step. 
+In this way, feature engineering is really important and it strongly affects the final results. 
+Also, this part is revisited as the project work progressed.\\
+A bag of words feature set is used in this project. Further more part of speech tagging is not used because tweet text is not formal and too sparse. \\
+For further testing and manipulations, the python code is available in the \textbf{feature\_extraction.py} file.
+
+
+\subsection{Term Frequency - Inverse Document Frequency (tf-idf) features}
+\label{sec:tfidf}
+\emph{tf-idf}\cite{website:tfidf} is a numerical statistic that is intended to reflect how important a word is to a document in a collection or corpus. It is often used as a weighting factor in information retrieval and text mining. The tf-idf value increases proportionally to the number of times a word appears in the document, but is offset by the frequency of the word in the corpus, which helps to adjust for the fact that some words appear more frequently in general.\\
+A \emph{scikit learn TfidfVectorizer}\footnote{\href{http://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html}{URL: TfidfVectorizer }} is used to extract the \emph{tf-idf} feature set.
+
+\subsection{Unigram frequency distribution features}
+\label{sec:fd}
+A bag of words feature set using frequency distribution counter is used from the \emph{nltk FreqDist}\footnote{\href{http://www.cs.bgu.ac.il/~nlpproj/hocr/doc/project.external.nltk_probability.FreqDist-class.html}{URL: FreqDist}} class.
+
+\subsection{Tweets special patterns features}
+\label{sec:special_patterns}
+As mentioned in section (\ref{sec:special_tweet_patterns}) hashtags and users are unique and therefore they are relevant features for the classification task. 
+However, not all the hashtags and users occur often in the data set. 
+Moreover, not all tweets contain at least one hashtag or one user name.
+In fact the data set contains 3259 tweets without hashtags and 2224 without user names. These designate respective rates of 84\% and 57\% of the tweets.
+In this way only the most common hashtags and users are used as features. Also, these features are combined with a bag of words feature set to have a better impact on the classification process.\\  
+The hashtag and users extractor can be tested on the \textbf{feature\_extraction.py} file.
+
+\subsection{Bigram frequency distribution features}
+\label{sec:bigram}
+A bigram is a pair of consecutive written units such as letters, syllables, or words.
+The bigrams are extracted using the \emph{nltk bigram}\footnote{\href{http://www.nltk.org/_modules/nltk/collocations.html}{URL: Collocations}} module.

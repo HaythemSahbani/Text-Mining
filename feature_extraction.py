@@ -151,12 +151,12 @@ def main():
     hashtag_dic = PatternsFeatures().pattern_classifier(lines, '#')
 
     print 'The 10 most frequent hashtags', PatternsFeatures().get_most_frequent_pattern(hashtag_dic)
-    print "number of tweets without hashtag is %d, it's %f percent of the data set" % (len(hashtag_dic['no_pattern_tweet']), 100*len(hashtag_dic['no_pattern_tweet'])/len(lines))
+    print "number of tweets without hashtag is %d, it's %d percent of the data set" % (len(hashtag_dic['no_pattern_tweet']), int(100*len(hashtag_dic['no_pattern_tweet'])/len(lines)))
 
     name_dic = PatternsFeatures().pattern_classifier(lines, '@')
 
     print 'The 10 most frequent usernames: ', PatternsFeatures().get_most_frequent_pattern(name_dic)
-    print "number of tweets without a user name is %d, it's %f  of the data set" % (len(name_dic['no_pattern_tweet']), 100*len(name_dic['no_pattern_tweet'])/len(lines))
+    print "number of tweets without a user name is %d, it's %d percent of the data set" % (len(name_dic['no_pattern_tweet']), int(100*len(name_dic['no_pattern_tweet'])/len(lines)))
 
 if __name__ == "__main__":
         main()

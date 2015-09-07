@@ -109,7 +109,7 @@ def unigram_evaluation(lines):
 
 
 
-        classifier1 = NaiveBayesClassifier.train(fd_unigram_featuresets_train)
+        classifier1 = NaiveBayesClassifier.train(tfidf_unigram_featuresets_train)
         classifier2 = MaxentClassifier.train(fd_unigram_featuresets_train)
         classifier3 = nltk.classify.SklearnClassifier(LinearSVC())
         classifier3.train(fd_unigram_featuresets_train)
@@ -138,22 +138,18 @@ def unigram_evaluation(lines):
 
 
  ################################################################################
-
-
-    print " time taken for the classification process %f sec " % (time() - t0)
- ################################################################################
     print "+-----------------------------------------------------------------+"
     print "\t\t\t\t\tfrequency distribution classification measurements"
     print "+-----------------------------------------------------------------+"
     print "Naive Bayes\t\t\t\t\t %f \t\t\t\t%d" % (max(fd_accuracy_list_nb), (fd_accuracy_list_nb.index(max(fd_accuracy_list_nb))*20)+10)
     print "Maximum entropy\t\t\t\t %f \t\t\t\t%d" % (max(fd_accuracy_list_maxent), (fd_accuracy_list_maxent.index(max(fd_accuracy_list_maxent))*20)+10)
-    print "Suport Vector Machine\t\t %f \t\t\t\t%d" % (max(fd_accuracy_list_svm), (fd_accuracy_list_svm.index(max(fd_accuracy_list_svm))*20)+10)
+    print "Support Vector Machine\t\t %f \t\t\t\t%d" % (max(fd_accuracy_list_svm), (fd_accuracy_list_svm.index(max(fd_accuracy_list_svm))*20)+10)
     print "+-----------------------------------------------------------------+"
     print "+-----------------------------------------------------------------+"
     print "\t\t\t\t\t\t\tmax f-measure \t number of features "
     print "Naive Bayes\t\t\t\t\t %f \t\t\t\t%d" % (max(fd_f_measure_list_nb), (fd_f_measure_list_nb.index(max(fd_f_measure_list_nb))*20)+10)
     print "Maximum entropy\t\t\t\t %f \t\t\t\t%d" % (max(fd_f_measure_list_maxent), (fd_f_measure_list_maxent.index(max(fd_f_measure_list_maxent))*20)+10)
-    print "Suport Vector Machine\t\t %f \t\t\t\t%d" % (max(fd_f_measure_list_svm), (fd_f_measure_list_svm.index(max(fd_f_measure_list_svm))*20)+10)
+    print "Support Vector Machine\t\t %f \t\t\t\t%d" % (max(fd_f_measure_list_svm), (fd_f_measure_list_svm.index(max(fd_f_measure_list_svm))*20)+10)
     print "+-----------------------------------------------------------------+"
 
  ################################################################################
@@ -162,15 +158,17 @@ def unigram_evaluation(lines):
     print "+-----------------------------------------------------------------+"
     print "Naive Bayes\t\t\t\t\t %f \t\t\t\t%d" % (max(tfidf_accuracy_list_nb), (tfidf_accuracy_list_nb.index(max(tfidf_accuracy_list_nb))*20)+10)
     print "Maximum entropy\t\t\t\t %f \t\t\t\t%d" % (max(tfidf_accuracy_list_maxent), (tfidf_accuracy_list_maxent.index(max(tfidf_accuracy_list_maxent))*20)+10)
-    print "Suport Vector Machine\t\t %f \t\t\t\t%d" % (max(tfidf_accuracy_list_svm), (tfidf_accuracy_list_svm.index(max(tfidf_accuracy_list_svm))*20)+10)
+    print "Support Vector Machine\t\t %f \t\t\t\t%d" % (max(tfidf_accuracy_list_svm), (tfidf_accuracy_list_svm.index(max(tfidf_accuracy_list_svm))*20)+10)
     print "+-----------------------------------------------------------------+"
     print "+-----------------------------------------------------------------+"
     print "\t\t\t\t\t\t\tmax f-measure \t number of features "
     print "Naive Bayes\t\t\t\t\t %f \t\t\t\t%d" % (max(tfidf_f_measure_list_nb), (tfidf_f_measure_list_nb.index(max(tfidf_f_measure_list_nb))*20)+10)
     print "Maximum entropy\t\t\t\t %f \t\t\t\t%d" % (max(tfidf_f_measure_list_maxent), (tfidf_f_measure_list_maxent.index(max(tfidf_f_measure_list_maxent))*20)+10)
-    print "Suport Vector Machine\t\t %f \t\t\t\t%d" % (max(tfidf_f_measure_list_svm), (tfidf_f_measure_list_svm.index(max(tfidf_f_measure_list_svm))*20)+10)
+    print "Support Vector Machine\t\t %f \t\t\t\t%d" % (max(tfidf_f_measure_list_svm), (tfidf_f_measure_list_svm.index(max(tfidf_f_measure_list_svm))*20)+10)
     print "+-----------------------------------------------------------------+"
+################################################################################
 
+    print " time taken for the classification process %f sec " % (time() - t0)
 ######################################################################################################
 
 
@@ -266,8 +264,7 @@ def bigram_evaluation(lines):
         f_measure_list_maxent.append(nltk.metrics.f_measure(refsets['not'], testsets2['not']))
     ############################################################################################################"
 
-    print " time taken for the classification process %f sec " % (time() - t0)
- ################################################################################
+
     
     print "+-----------------------------------------------------------------+"
     print "\t\t\t\t\tbigram classification measurements"
@@ -275,30 +272,32 @@ def bigram_evaluation(lines):
     print "\t\t\t\t\t\t\tmax accuracy \t number of features "
     print "Naive Bayes\t\t\t\t\t %f \t\t\t\t%d" % (max(accuracy_list_nb), (accuracy_list_nb.index(max(accuracy_list_nb))*20)+10)
     print "Maximum entropy\t\t\t\t %f \t\t\t\t%d" % (max(accuracy_list_maxent), (accuracy_list_maxent.index(max(accuracy_list_maxent))*20)+10)
-    print "Suport Vector Machine\t\t %f \t\t\t\t%d" % (max(accuracy_list_svm), (accuracy_list_svm.index(max(accuracy_list_svm))*20)+10)
+    print "Support Vector Machine\t\t %f \t\t\t\t%d" % (max(accuracy_list_svm), (accuracy_list_svm.index(max(accuracy_list_svm))*20)+10)
     print "+-----------------------------------------------------------------+"
     print "+-----------------------------------------------------------------+"
     print "\t\t\t\t\t\t\tmax f-measure \t number of features "
     print "Naive Bayes\t\t\t\t\t %f \t\t\t\t%d" % (max(f_measure_list_nb), (f_measure_list_nb.index(max(f_measure_list_nb))*20)+10)
     print "Maximum entropy\t\t\t\t %f \t\t\t\t%d" % (max(f_measure_list_maxent), (f_measure_list_maxent.index(max(f_measure_list_maxent))*20)+10)
-    print "Suport Vector Machine\t\t %f \t\t\t\t%d" % (max(f_measure_list_svm), (f_measure_list_nb.index(max(f_measure_list_svm))*20)+10)
+    print "Support Vector Machine\t\t %f \t\t\t\t%d" % (max(f_measure_list_svm), (f_measure_list_svm.index(max(f_measure_list_svm))*20)+10)
     print "+-----------------------------------------------------------------+"
+################################################################################
 
+    print " time taken for the classification process %f sec " % (time() - t0)
 ##################################################################################
     x_axis = [i for i in range(10, 200, 20)]
 
     plt.figure(facecolor='white')
-    fig1, = plt.plot(x_axis, accuracy_list_nb, 'r*-', label='Naive bayes accuracy')
+    # fig1, = plt.plot(x_axis, accuracy_list_nb, 'r*-', label='Naive bayes accuracy')
     fig2, = plt.plot(x_axis, f_measure_list_nb, 'ro-', label='Naive bayes f-measure')
-    fig3, = plt.plot(x_axis, accuracy_list_svm, 'g*-', label='SVM accuracy')
+    # fig3, = plt.plot(x_axis, accuracy_list_svm, 'g*-', label='SVM accuracy')
     fig4, = plt.plot(x_axis, f_measure_list_svm, 'go-', label='SVM f-measure')
-    fig5, = plt.plot(x_axis, accuracy_list_maxent, '*-', label='max Entropy accuracy')
+    # fig5, = plt.plot(x_axis, accuracy_list_maxent, '*-', label='max Entropy accuracy')
     fig6, = plt.plot(x_axis, f_measure_list_maxent, 'o-', label='max Entropy f-measure')
 
     plt.xlabel('Number of features')
     plt.ylabel('Results')
     plt.title('Results of the classification using bigrams')
-    plt.legend(handles=[fig1, fig2, fig3, fig4, fig5, fig6], loc=4)
+    plt.legend(handles=[fig2, fig4, fig6], loc=4)
     plt.show()
 
 
@@ -383,9 +382,7 @@ def uni_and_bi_validation(lines):
         accuracy_list_maxent.append(nltk.classify.accuracy(classifier2, featuresets_test))
         f_measure_list_maxent.append(nltk.metrics.f_measure(refsets['not'], testsets2['not']))
 
-################################################################################
 
-    print " time taken for the classification process %f sec " % (time() - t0)
  ################################################################################
 
     print "+-----------------------------------------------------------------+"
@@ -394,15 +391,17 @@ def uni_and_bi_validation(lines):
     print "\t\t\t\t\t\t\tmax accuracy \t number of features "
     print "Naive Bayes\t\t\t\t\t %f \t\t\t\t%d" % (max(accuracy_list_nb), (accuracy_list_nb.index(max(accuracy_list_nb))*20)+10)
     print "Maximum entropy\t\t\t\t %f \t\t\t\t%d" % (max(accuracy_list_maxent), (accuracy_list_maxent.index(max(accuracy_list_maxent))*20)+10)
-    print "Suport Vector Machine\t\t %f \t\t\t\t%d" % (max(accuracy_list_svm), (accuracy_list_svm.index(max(accuracy_list_svm))*20)+10)
+    print "Support Vector Machine\t\t %f \t\t\t\t%d" % (max(accuracy_list_svm), (accuracy_list_svm.index(max(accuracy_list_svm))*20)+10)
     print "+-----------------------------------------------------------------+"
     print "+-----------------------------------------------------------------+"
     print "\t\t\t\t\t\t\tmax f-measure \t number of features "
     print "Naive Bayes\t\t\t\t\t %f \t\t\t\t%d" % (max(f_measure_list_nb), (f_measure_list_nb.index(max(f_measure_list_nb))*20)+10)
     print "Maximum entropy\t\t\t\t %f \t\t\t\t%d" % (max(f_measure_list_maxent), (f_measure_list_maxent.index(max(f_measure_list_maxent))*20)+10)
-    print "Suport Vector Machine\t\t %f \t\t\t\t%d" % (max(f_measure_list_svm), (f_measure_list_svm.index(max(f_measure_list_svm))+1)*20)
+    print "Support Vector Machine\t\t %f \t\t\t\t%d" % (max(f_measure_list_svm), (f_measure_list_svm.index(max(f_measure_list_svm))+1)*20)
     print "+-----------------------------------------------------------------+"
+################################################################################
 
+    print " time taken for the classification process %f sec " % (time() - t0)
 #####################################################################################################
     x_axis = [i for i in range(10, 200, 20)]
     plt.figure(facecolor='white')

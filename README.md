@@ -8,7 +8,7 @@ instant messages, mobile phones, email or the Web.
 
 Long text classification is a classic task in natural language processing. This project aims to evaluate how well does the currenet classification techniques fit into **short text classification** also known as microblog classification.
 
-To do so the "Twitter Political Corpus" data set is used. ([http://www.usna.edu/Users/cs/nchamber/data/twitter/])
+To do so the [Twitter Political Corpus](http://www.usna.edu/Users/cs/nchamber/data/twitter/) data set is used. 
 Given a tweet, the task is to distinguish political tweets from non-political ones. 
 
 Machine learning algorithms used:

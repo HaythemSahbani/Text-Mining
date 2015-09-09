@@ -80,4 +80,5 @@ target/
 *.out
 *.synctex.gz
 *.sty
+*.bbl
 
